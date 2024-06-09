@@ -1,0 +1,438 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    @*<!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+    
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>*@
+
+
+
+
+    @*<script src="~/Scripts/jquery-3.4.1.js"></script>*@
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"> </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker-standalone.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker-standalone.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css">
+    <script src="https://rawgit.com/moment/moment/2.2.1/min/moment.min.js"></script>
+   
+    
+  
+
+    <style type="text/css">
+        #tableh1 {
+            text-align: center;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+
+
+<body ng-app="myApp">
+
+    <div ng-controller="myController" >
+
+
+        <div class="row">
+
+            <div class="col-md-4, jumbotron" style="padding-left:40% !important">
+                <p>AngularJS CRUD Operation</p>
+            </div>
+        </div>
+
+
+
+
+   @*<div class="col-md-8">
+
+   </div>
+
+
+
+
+    <div class="col-md-12, jumbotron"> 
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+            <div class="container">
+                <p>AngularJS CRUD Operation</p>
+            </div>
+        </div>
+        <br />
+    </div>*@
+
+
+
+    <br />
+
+        <div ng-show="form">
+            <div class="container" id="Test">
+                <div class="col-md-1">
+                    <p>Roll:</p>
+                </div>
+
+               
+                <div>
+
+                    <p><input type="number" placeholder="" id="RollNo" ng-model="Student.Roll" value="" /></p>
+                    
+                </div>
+            </div>
+            <br />
+            <div class="container">
+                <div class="col-md-1">
+                    <p>Name:</p>
+                </div>
+                <div>
+                    <p><input type="text" placeholder="" ng-model="Student.Name" value="" /></p>
+
+                </div>
+            </div>
+
+          <br />
+            <div class="container">
+                <div class="col-md-1">
+                    <p>Phone:</p>
+                </div>
+                <div>
+                    <p><input type="text" placeholder="" ng-model="Student.Phone" value="" /></p>
+
+                </div>
+            </div>
+
+            <br />
+
+
+            <div class="container">
+                <div class="col-md-1">
+                    <p>BirthDate:</p>
+                </div>
+                <div>
+                    <input type="date" id="Test_DatetimeLocal" ng-model="Student.BirthDate" autocomplete="off">
+
+                </div>
+            </div>
+            
+            <br />
+            <div class="container">
+                <div class="col-md-1">
+                    <p>Subject:</p>
+                </div>
+                <div>
+                    <p><input type="text" placeholder="" ng-model="Student.Subject" value="" /></p>
+
+                </div>
+            </div>
+               
+                @*<div>
+                   
+                     
+                    <input type="date"
+                      id="Test_DatetimeLocal" ng-model="Student.BirthDate">
+                   
+
+                </div>*@
+            </div>
+            <br />
+          
+
+
+
+
+            <div  class="container">
+              
+                <div class="row">
+                    <div class="col-md-3">
+
+                    </div>
+                    <div class="col-md-3">
+
+                    </div>
+                    <div class="col-md-3">
+
+                    </div>
+                    <div class="col-md-3">
+                        @*<input type="button" class="btn btn-success" ng-click="Save()" value="{{btntext}}" />*@
+                        <button id="save" type="button" class="btn btn-success"ng-show="save" ng-click="Save()" value="Save">Save</button>
+                        @*<button id="update" type="button" class="btn btn-success" ng-click="Update()" value="Save" >Update</button>*@
+                        <button id="list" type="button" class="btn btn-info" ng-click="showdata(); showed = true; hidden = false"  value="List">List</button>
+                    </div>
+                </div>
+           
+        </div> <br />
+        
+
+        <div ng-show="list">
+            <h1 id="tableh1">
+            <i>Student List</i></h1>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr class="success">
+                            <th>ID</th>
+                            <th>Roll</th>
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>BirthDate</th>
+                            <th>Subject</th>
+                            <th>Options</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="active" ng-repeat="e in studentList">
+                            <td>{{e.ID}}</td>
+                            <td>{{e.Roll}}</td>
+                            <td>{{e.Name}}</td>
+                            <td>{{e.Phone}}</td>
+                            <td>{{e.BirthDate}}</td>
+                            <td>{{e.Subject}}</td>
+                            <td>
+                                <div>
+                                    <button id ="edit" type="button" class="btn btn-warning" ng-click="editData(e)">Edit</button>
+                                    <button type="button" class="btn btn-danger" ng-click="deleteData(e)">Delete</button>
+                                </div>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+          
+       </div>
+
+
+    <script>
+
+     
+              
+        var app = angular.module("myApp", []);
+        app.controller("myController", function ($scope, $http) {
+            $scope.form = true;
+            $scope.list = false;
+            $scope.save = true;
+
+            $scope.Save = function (e) {
+               
+                const x = document.getElementById("save").innerHTML;
+
+                if(x=="Save"){
+                    
+                    
+                    $http({
+                        method: 'POST',
+                        url: '/Home/SaveStudent',
+                        data: $scope.Student
+                    }).then(function success() {
+                        alert("success");
+                        $scope.Student = null;
+                    }), function error() {
+                        alert("failed");
+                    };
+                }
+                else if (x == "Update") {
+
+                  
+                    $http({
+                        method: "POST",
+                        url: '/HOME/Update_stdList',
+                        data: $scope.Student
+                    }).then(function success() {
+                        alert("success");
+                        $scope.Student = null;
+                    }), function error() {
+                        alert("failed");
+                    };
+                }
+               
+                //$http({
+                //    method: 'POST',
+                //    url: '/Home/SaveStudent',
+                //    data: $scope.Student
+                //}).then(function success() {
+                //    alert("success");
+                //    $scope.Student = null;
+                //}), function error() {
+                //    alert("failed");
+                //};
+            };
+
+
+            //$scope.Update = function () {
+            //    $http({
+            //        method: "POST",
+            //        url: '/HOME/Update_stdList',
+            //        data: $scope.Student
+            //    }).then(function success() {
+            //        alert("success");
+            //        $scope.Student = null;
+            //    }), function error() {
+            //        alert("failed");
+            //    };
+            //};
+            
+
+
+            $scope.showdata = function () {
+                //$http.get("/Home/Get_stdList").then(function (response) {
+
+                //    var Date1 = response.data[0].BirthDate;
+                //    var Date2 = Date1.ToFormatString("dd/MM/yyyy");
+
+
+                //    $scope.studentList = response.data;
+                //    $scope.showed = true;
+                //    $scope.hidden = true;
+                  
+                //}, function (error) {
+                //    alert('Failed');
+                //});
+               var x =  document.getElementById("list").innerHTML ;
+                
+                    
+               if (x == "List") {
+                   $scope.form = false;
+                   $scope.list = true;
+                   $scope.save = false;
+                   $http({
+                       method: "GET",
+                       url: '/HOME/Get_stdList',
+                       data: null
+                   }).then(function success(response) {
+                       //alert("success");
+                       //var Date1 = response.data.listst[0].BirthDate;
+                       //var Date2 = Date1.ToFormatString("dd/MM/yyyy");
+                       //var date = new Date(parseInt(Date1.substr(6)));
+
+                       for (i = 0; i < response.data.listst.length ; i++) {
+
+                           var date = new Date(parseInt(response.data.listst[i].BirthDate.substr(6)));
+
+                           //console.log(Intl.DateTimeFormat().resolvedOptions().timeZone)
+                           //timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+                           const options = { timeZone: 'Asia/Dhaka' };
+                           const today = date.toLocaleDateString("en-IN", options);
+                           response.data.listst[i].BirthDate = today;
+                       }
+
+                       $scope.studentList = response.data.listst;
+                       alert("success");
+                   }), function error() {
+                       alert("failed");
+                   };
+                   var x = document.getElementById("list").innerHTML= "Create";
+               }
+               else if (x == "Create") {
+                   $scope.form = true;
+                   $scope.list = false;
+                   $scope.save = true;
+                   $http({
+                       method: "GET",
+                       url: '/HOME/Get_stdList',
+                       data: null
+                   }).then(function success(response) {
+                       //alert("success");
+                       //var Date1 = response.data.listst[0].BirthDate;
+                       //var Date2 = Date1.ToFormatString("dd/MM/yyyy");
+                       //var date = new Date(parseInt(Date1.substr(6)));
+
+                       for (i = 0; i < response.data.listst.length ; i++) {
+
+                           var date = new Date(parseInt(response.data.listst[i].BirthDate.substr(6)));
+
+                           //console.log(Intl.DateTimeFormat().resolvedOptions().timeZone)
+                           //timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+                           const options = { timeZone: 'Asia/Dhaka' };
+                           const today = date.toLocaleDateString("en-IN", options);
+                           response.data.listst[i].BirthDate = today;
+                       }
+
+                       $scope.studentList = response.data.listst;
+                       alert("success");
+                   }), function error() {
+                       alert("failed");
+                   };
+                   var x = document.getElementById("list").innerHTML = "List";
+               }
+            
+      
+            }
+
+
+            $scope.deleteData = function (e) {
+                $scope.Student = e;
+                $http({
+                    method: 'POST',
+                    url: '/Home/Delete_Student',
+                    data: $scope.Student
+                }).then(function success() {
+                    alert("Deleted");
+                    $scope.showdata();
+                    $scope.Student = null;
+                }), function error() {
+                    alert("Failed");
+                };
+            }
+
+
+            $scope.editData = function (e) {
+                document.getElementById("save").innerHTML = "Update";
+                document.getElementById("list").innerHTML = "List";
+
+                $scope.form = true;
+                $scope.list = false;
+                $scope.save = true;
+               
+                
+                $scope.Student = e;
+                //$scope.Name = 'aesrdtgfyhjkcv';
+                //$scope.Name2 = 'aesrdtgfyhjkcv';
+
+
+                //var Text = document.getElementById("Test").innerText;
+                //var HTML = document.getElementById("Test").innerHTML;
+                //console.log(Text);
+                //console.log(HTML);
+
+                //document.getElementById("Test").innerHTML = '<div class="col-md-1"><p>Card:</p></div><div><p><input type="number" placeholder="number" ng-model="Student.Roll" value="" class="ng-pristine ng-untouched ng-valid ng-empty"></p></div>'
+            }
+            
+            //$scope.Blur = function () {
+            //    console.log('HI');
+            //}
+
+
+
+
+
+            
+        });
+
+       
+    </script>
+
+
+</body>
+</html>
